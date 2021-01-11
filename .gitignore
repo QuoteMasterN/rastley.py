@@ -1,0 +1,5 @@
+# Personal stuff
+.vscode
+bot-env
+__pycache__/
+__pycache__/scraper.cpython-39.pyc
