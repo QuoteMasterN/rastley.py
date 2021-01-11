@@ -1,11 +1,13 @@
 from bs4 import BeautifulSoup
 import requests
+import re
 
 # read knownLinks.txt into a list
 file = open("knownLinks.txt", "r")
 knownLinks = file.readlines()
 
 def searchForRick(url):
+    links = []
     # check if url is rick roll
     if url in knownLinks: return True
 
@@ -14,8 +16,10 @@ def searchForRick(url):
     soup = BeautifulSoup(source, 'lxml')
 
     # get links from page
-    links = soup.find_all('a')
+    for tag in soup.find_all(src=True):
+        links.append(tag['src'])
 
+    print(links)
     # iterate through all links to check for rick rolls
     for link in links:
         if link in knownLinks:
